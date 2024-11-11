@@ -7,6 +7,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    // pic: {
+    //     type: String
+    // },
     email: {
         type: String,
         required: true,
@@ -15,6 +18,9 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    refreshToken: {
+        type: String
     }
 },
 {timestamps: true}
@@ -29,7 +35,7 @@ userSchema.pre("save", async function (next){
 })
 
 userSchema.methods.isPasswordCorrect = async function(password){
-    return await bcrypt.compare(password, this.passwprd)
+    return await bcrypt.compare(password, this.password)
 }
 
 userSchema.methods.generateAccessToken = function(){

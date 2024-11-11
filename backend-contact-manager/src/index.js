@@ -12,3 +12,8 @@ connectDB()
 .catch((err) =>{
     console.log("MONGODB connection failed!!!", err);
 })
+
+
+// app.get('/', (req, res) => {
+//     res.send('server is ready hardev')
+// })
