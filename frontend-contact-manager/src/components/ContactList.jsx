@@ -77,7 +77,7 @@ const handleContactChange = () => {
           contacts.map((contact) => (
             <div
               key={contact._id}
-              className="bg-gray-100 p-4 mb-4 rounded-lg shadow-sm flex items-center justify-between"
+              className="bg-gray-100 p-4 mb-4 rounded-lg shadow-sm sm:flex items-center justify-between"
             >
               {/* image */}
               {contact.image && (

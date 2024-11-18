@@ -15,6 +15,9 @@ app.use(cors({
     credentials: true
 }));
 
+app.options('*', cors());  // Handle preflight requests globally
+
+
 app.use(express.json())
 
 app.use(express.urlencoded({extended: true}))
@@ -22,6 +25,12 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"))
 
 app.use(cookieParser())
+
+app.use((req, res, next) => {
+    console.log(`[${req.method}] ${req.url}`);
+    next();
+});
+
 
 
 // user routes import

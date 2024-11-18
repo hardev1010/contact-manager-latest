@@ -15,6 +15,7 @@ API.interceptors.request.use((req) => {
 
 export const registerUser = (userData) => API.post('/users/register', userData);
 export const loginUser = (userData) => API.post('/users/login', userData);
+export const forgotUserPassword = (userData) => API.post('/users/forgot-password', userData);
 export const fetchContacts = () => API.get('/contacts');
 export const createContact = (contactData) => API.post('/contacts', contactData);
 export const updateContact = (id, updatedContact) => API.post(`/contacts/${id}`, updatedContact);

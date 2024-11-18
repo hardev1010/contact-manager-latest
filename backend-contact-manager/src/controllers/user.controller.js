@@ -4,6 +4,7 @@ import {ApiResponse} from "../utils/ApiResponse.js"
 import { User } from "../models/user.model.js"
 import jwt from "jsonwebtoken"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
+import { sendMail } from "../utils/nodeMailer.js"
 
 //kept global bcz multiple use in cookies
 const options = {
@@ -197,6 +198,55 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 })
 
+const forgotPassword = asyncHandler(async (req, res) => {
+    const {email} = req.body
+    console.log(req.body, "this is mail", email);
+    
+
+    const user = await User.findOne({email})
+
+    if(!user){
+        throw new ApiError(400, `user with email: ${email} not registered`)
+    }
+
+    const options = {
+        to: email,
+        subject: "Reset Password",
+        text: `http://localhost:5173/reset-password/${user?._id}`
+    }
+
+    sendMail(options)
+
+    return res
+    .status(200)
+    .json(new ApiResponse(
+        200,
+        {},
+        `Reset Password link sent to ${email} successfully`
+    ))
+})
+
+const resetPassword = asyncHandler(async (req, res) => {
+    const {password} = req.body
+
+    const user = await User.findByIdAndUpdate(req.params.id, 
+        {
+            $set: {
+                password
+            }
+        },
+        {new: true}
+    )
+
+    return res.status(200)
+    .json(new ApiResponse(
+        200,
+        user,
+        "reset password successfully"
+    ))
+
+})
+
 const changeCurrentPassword = asyncHandler(async (req, res) => {
     const {oldPassword, newPassword} = req.body
 
@@ -232,6 +282,9 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 const updateAccountDetails = asyncHandler(async (req, res) => {
     const {name, email} = req.body
 
+    console.log("update user", req.body);
+    
+
     if (!name || !email) {
         throw new ApiError(400, "All fields are required")
     }
@@ -248,6 +301,9 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
         
     ).select("-password")
 
+    console.log("updated");
+    
+
     return res
     .status(200)
     .json(new ApiResponse(200, user, "Account details updated successfully"))
@@ -258,6 +314,8 @@ export{
     loginUser,
     logoutUser,
     refreshAccessToken,
+    forgotPassword,
+    resetPassword,
     changeCurrentPassword,
     getCurrentUser,
     updateAccountDetails

@@ -28,6 +28,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import ContactList from './components/ContactList';
 import ProtectedRoute from './components/ProtectedRoute';
+import ForgotPassword from "./components/ForgotPassword";
 
 
 
@@ -51,6 +52,7 @@ const App = () => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/" element={<Login />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/contacts" element={
                     <ProtectedRoute>
                         <ContactList />

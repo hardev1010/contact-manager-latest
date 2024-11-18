@@ -5,6 +5,8 @@ import {uploadOnCloudinary} from "../utils/cloudinary.js"
 import { Contact } from "../models/contact.model.js"
 
 const createContact = asyncHandler(async (req, res) => {
+    console.log("into create contact");
+    
     const {name, phone, email, address} = req.body
 
     if(!(name || phone || email || address)){
@@ -75,6 +77,11 @@ const getAllContacts = asyncHandler(async (req, res) => {
 })
 
 const updateContact = asyncHandler(async (req, res) => {
+    console.log("into update contacts");
+    
+    const {id} = req.params
+    console.log(req.params.id);
+    
     const {name, email, phone, address, image} = req.body
 
     // const imageLocalPath = req.file?.path
@@ -100,8 +107,8 @@ const updateContact = asyncHandler(async (req, res) => {
                 name,
                 email,
                 phone,
-                address,
-                image
+                address
+                // image
             }
         },
         {new: true}
