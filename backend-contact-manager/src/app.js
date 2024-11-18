@@ -37,12 +37,12 @@ app.use((req, res, next) => {
 import userRouter from "./routes/user.routes.js"
 
 //routes declaration
-app.use("/api/v1/users", userRouter)
+app.use("https://contact-manager-backend-0iul.onrender.com/users", userRouter)
 
 // contact routes import
 import contactRouter from "./routes/contact.routes.js"
 
 //routes declaration
-app.use("/api/v1/contacts", contactRouter)
+app.use("https://contact-manager-backend-0iul.onrender.com/contacts", contactRouter)
 
 export default app
