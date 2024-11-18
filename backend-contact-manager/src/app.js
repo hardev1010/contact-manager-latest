@@ -9,7 +9,7 @@ const app = express()
 // }))
 
 app.use(cors({
-    origin: 'http://localhost:5173',  // Replace with your frontend origin
+    origin: 'https://contact-manager-2268.onrender.com/',  // Replace with your frontend origin
     methods: ['Access-Control-Allow-Methods', 'GET', 'PUT', 'POST', 'PATCH', 'DELETE'],
     allowedHeaders: ['Access-Control-Allow-Headers', 'Content-Type', 'Authorization'],  // Allow specific headers
     credentials: true
