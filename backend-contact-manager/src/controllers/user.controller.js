@@ -14,6 +14,8 @@ const options = {
 
 const generateAccessAndRefreshTokens = async(userId) => {
     try {
+        console.log("generating tokens");
+        
         const user = await User.findById(userId)
         // console.log(user);
         
@@ -34,10 +36,12 @@ const generateAccessAndRefreshTokens = async(userId) => {
 }
 
 const registerUser = asyncHandler(async(req, res) => {
+    console.log("registerring user");
+    
     console.log("going to req.body",req.body);
     
     const {name, email, password} = req.body
-console.log("body aa gyi",req.body);
+// console.log("body aa gyi",req.body);
 
     if(!(name || email || password)){
         throw new ApiError(400, "All fields are required")
@@ -93,6 +97,8 @@ console.log("body aa gyi",req.body);
 })
 
 const loginUser = asyncHandler(async (req, res) => {
+    console.log("logging in user");
+    
     console.log("going to req.body",req.body);
     
     const {email, password} = req.body
@@ -137,6 +143,8 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 const logoutUser = asyncHandler(async (req, res) => {
+    console.log("logging out user");
+    
     await User.findByIdAndUpdate(
         req.user._id,
         {
@@ -270,6 +278,8 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 })
 
 const getCurrentUser = asyncHandler(async (req, res) => {
+    console.log("getting current user");
+    
     return res
     .status(200)
     .json(new ApiResponse(
@@ -280,6 +290,8 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 })
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
+    console.log("updating user details");
+    
     const {name, email} = req.body
 
     console.log("update user", req.body);

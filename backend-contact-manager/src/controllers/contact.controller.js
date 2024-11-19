@@ -5,7 +5,7 @@ import {uploadOnCloudinary} from "../utils/cloudinary.js"
 import { Contact } from "../models/contact.model.js"
 
 const createContact = asyncHandler(async (req, res) => {
-    console.log("into create contact");
+    console.log("creating contact.....");
     
     const {name, phone, email, address} = req.body
 
@@ -48,6 +48,8 @@ const createContact = asyncHandler(async (req, res) => {
 })
 
 const getContact  = asyncHandler(async (req, res) => {
+    console.log("getting single contact");
+    
     const contact = await Contact.findById(req.params.id)
 
     if(!contact){
@@ -66,6 +68,8 @@ const getContact  = asyncHandler(async (req, res) => {
 })
 
 const getAllContacts = asyncHandler(async (req, res) => {
+    console.log("getting all contacts");
+    
     const contacts = await Contact.find({ userId: req.user._id })
 
     // console.log("contacts:- ",contacts , req.user._id);
@@ -77,7 +81,7 @@ const getAllContacts = asyncHandler(async (req, res) => {
 })
 
 const updateContact = asyncHandler(async (req, res) => {
-    console.log("into update contacts");
+    console.log("updating contact.......");
     
     const {id} = req.params
     console.log(req.params.id);
@@ -160,6 +164,8 @@ const updateContactImage = asyncHandler(async(req, res) => {
 })
 
 const deleteContact = asyncHandler(async (req, res) => {
+    console.log("deleting contact......");
+    
     const contact = await Contact.findByIdAndDelete(req.params.id)
 
     if(!contact){
