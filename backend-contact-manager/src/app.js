@@ -9,13 +9,12 @@ const app = express()
 // }))
 
 app.use(cors({
-    origin: 'https://contact-manager-2268.onrender.com/',  // Replace with your frontend origin
-    methods: ['Access-Control-Allow-Methods', 'GET', 'PUT', 'POST', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Access-Control-Allow-Headers', 'Content-Type', 'Authorization'],  // Allow specific headers
+    origin: 'https://contact-manager-2268.onrender.com',  // Replace with your frontend origin
+    methods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],  // Allow specific headers
     credentials: true
 }));
 
-app.options('*', cors());  // Handle preflight requests globally
 
 
 app.use(express.json())
@@ -37,12 +36,12 @@ app.use((req, res, next) => {
 import userRouter from "./routes/user.routes.js"
 
 //routes declaration
-app.use("https://contact-manager-backend-0iul.onrender.com/users", userRouter)
+app.use("/users", userRouter)
 
 // contact routes import
 import contactRouter from "./routes/contact.routes.js"
 
 //routes declaration
-app.use("https://contact-manager-backend-0iul.onrender.com/contacts", contactRouter)
+app.use("/contacts", contactRouter)
 
 export default app
