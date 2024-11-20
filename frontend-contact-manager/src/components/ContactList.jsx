@@ -27,8 +27,9 @@ const ContactList = () => {
   const handleDelete = async (id) => {
     try {
       await deleteContact(id);
-      setContacts(contacts.filter((contact) => contact._id !== id));
       toast.success('contact deleted successfully')
+      setContacts(contacts.filter((contact) => contact._id !== id));
+      
     } catch (error) {
       console.error("Error deleting contact:", error);
     }
