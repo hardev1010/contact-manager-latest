@@ -3,7 +3,7 @@ import { createContact, updateContact } from '../api/api';
 import { toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ContactForm = ({ editingContact, setEditingContact }) => {
+const ContactForm = ({ editingContact, setEditingContact, loadContacts, isModalOpen, setIsModalOpen }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -97,11 +97,17 @@ const ContactForm = ({ editingContact, setEditingContact }) => {
                 // Create a new contact
                 console.log("creating contact:--  ", formData);
                 await createContact(formData);
+                loadContacts()
                 toast.success('contact added successfully')
             }
-
+            
             setEditingContact(null);
-            // closeModal();
+
+            // setTimeout(() => {
+            //     setIsModalOpen(false); // Close the modal after a short delay
+            // }, 900);
+            
+            // setIsModalOpen(!isModalOpen)
         } catch (error) {
             toast.error('error saving contact')
             console.error('Error saving contact:', error);

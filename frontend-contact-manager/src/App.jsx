@@ -1,27 +1,3 @@
-// import { useEffect, useState } from 'react'
-// import axios from "axios"
-// import './App.css'
-
-// function App() {
-//   const [count, setCount] = useState(0)
-
-//   useEffect(() => {
-//     axios.get()
-//   },[])
-
-//   return (
-//     <>
-//       <h1 className="text-5xl font-bold underline">
-//       Contact Manager
-//     </h1>
-//     </>
-//   )
-// }
-
-// export default App
-
-import axios from "axios"
-import { useEffect, useState } from 'react'
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Register from './components/Register';

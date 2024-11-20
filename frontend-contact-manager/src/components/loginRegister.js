@@ -1,3 +1,5 @@
+// this is not used anywhere in project it is for reference only
+
 import axios from 'axios';
 
 const loginUser = async (email, password) => {
