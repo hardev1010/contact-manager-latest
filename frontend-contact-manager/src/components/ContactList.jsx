@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { fetchContacts, deleteContact } from "../api/api";
 import ContactForm from "./ContactForm";
 import Header from "./Header";
-import { toast, ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { toast, ToastContainer} from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const ContactList = () => {
   const [contacts, setContacts] = useState([]);
@@ -27,7 +27,7 @@ const ContactList = () => {
   const handleDelete = async (id) => {
     try {
       await deleteContact(id);
-      toast.success('contact deleted successfully')
+      // toast.success('contact deleted successfully')
       setContacts(contacts.filter((contact) => contact._id !== id));
       
     } catch (error) {
@@ -52,7 +52,7 @@ const ContactList = () => {
 
   return (
     <>
-      <ToastContainer/>
+      {/* <ToastContainer/> */}
       <Header user={user} />
       <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
         <div className="flex justify-between">
